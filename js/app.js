@@ -68,14 +68,18 @@ function buildNavList() {
 */
 function updateNavList(entries, observer) {
     const items = navList.querySelectorAll('li');
-    entries.forEach(entry => {
-        if(!entry.isIntersecting){
-            return;
+    entries.forEach(entry => { 
+        if(!entry.isIntersecting){ 
+            entry.target.classList.remove('your-active-class');
+            return; 
         }
+
         items.forEach(i => {
             i.classList.remove('active');
             i.classList.add('menu__link');
-        })
+        });
+
+        entry.target.classList.add('your-active-class');
     
         let id = entry.target.id;
         id = id.slice(7, 8);
